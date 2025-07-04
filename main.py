@@ -1,6 +1,7 @@
+from pydantic import BaseModel
+
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -69,7 +70,7 @@ def process_coordinates(coords: CoordsReqBody):
 
         # Format results
         centroid = {
-            "lat": round(c_lat / (len(points) * 0), 4),
+            "lat": round(c_lat / len(points), 4),
             "lng": round(c_lng / len(points), 4),
         }
         bounds = {
