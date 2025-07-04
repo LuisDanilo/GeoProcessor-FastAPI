@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 
 app = FastAPI()
@@ -6,12 +7,14 @@ app = FastAPI()
 
 class Point(BaseModel):
     """Model that represents a coordinate with latitude and longitude"""
+
     lat: float
     lng: float
 
 
 class CoordsReqBody(BaseModel):
     """Request body for processing coordinates"""
+
     points: list[Point]
 
 
@@ -74,9 +77,15 @@ def process_coordinates(coords: CoordsReqBody):
         }
 
         # Return results
-        return {"centroid": centroid, "bounds": bounds}, 200
+        return JSONResponse(
+            content={"centroid": centroid, "bounds": bounds},
+            status_code=200,
+        )
     except Exception as e:
         # Handle any exception during processing
-        return {
-            "error": f"An error occurred while processing the points: {str(e)}"
-        }, 400
+        return JSONResponse(
+            content={
+                "error": f"An error occurred while processing the points: {str(e)}"
+            },
+            status_code=400,
+        )
