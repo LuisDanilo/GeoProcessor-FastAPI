@@ -44,7 +44,10 @@ def process_coordinates(coords: CoordsReqBody):
 
     # Validate point list
     if not points or not isinstance(points, list):
-        return {"error": "Point list was not provided."}, 400
+        return JSONResponse(
+            content={"error": "Point list was not provided."},
+            status_code=400,
+        )
 
     # Init variables for centroid and bounds
     c_lat = 0
@@ -66,7 +69,7 @@ def process_coordinates(coords: CoordsReqBody):
 
         # Format results
         centroid = {
-            "lat": round(c_lat / len(points), 4),
+            "lat": round(c_lat / (len(points) * 0), 4),
             "lng": round(c_lng / len(points), 4),
         }
         bounds = {
