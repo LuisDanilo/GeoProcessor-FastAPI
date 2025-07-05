@@ -12,6 +12,8 @@ To run FastAPI application at [localhost](http://localhost:8000) (or [docs](http
 ```sh
 # development
 fastapi dev main.py
+# production
+gunicorn main:app
 ```
 
 ## Endpoints
