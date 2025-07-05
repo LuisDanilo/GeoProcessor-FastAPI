@@ -1,15 +1,16 @@
-# Docs
+# Geo Processor - FastAPI Backend
 
 ## How to run
-First of all you need to ensure using python 3.13 and virtual environment.
+First of all you need to ensure using python 3.13, a virtual environment and install all dependencies:
 
-Install packages
 ```sh
 pip install -r requirements.txt
 ```
 
 To run FastAPI application at [localhost](http://localhost:8000) (or [docs](http://localhost:8000/docs)) you can run
+
 ```sh
+# development
 fastapi dev main.py
 ```
 
