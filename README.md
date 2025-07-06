@@ -3,17 +3,19 @@
 ## How to run
 First of all you need to ensure using python 3.13, a virtual environment and install all dependencies:
 
-```sh
+```bash
+python -m venv venv
+source ./venv/bin/activate
 pip install -r requirements.txt
 ```
 
 To run FastAPI application at [localhost](http://localhost:8000) (or [docs](http://localhost:8000/docs)) you can run
 
-```sh
+```bash
 # development
 fastapi dev main.py
 # production
-gunicorn main:app
+gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker
 ```
 
 ## Endpoints
